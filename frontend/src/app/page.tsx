@@ -1,3 +1,5 @@
+import HealthWidget from "@/components/HealthWidget";
+
 export default function Home() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-white to-gray-100 dark:from-black dark:to-neutral-900">
@@ -10,6 +12,8 @@ export default function Home() {
             Esta es la plantilla base con Next.js (App Router) y Tailwind CSS.
             Empieza editando <code className="px-1.5 py-0.5 rounded bg-gray-100 dark:bg-neutral-800 text-gray-800 dark:text-gray-200">src/app/page.tsx</code>.
           </p>
+          {/* Widget de estado usando React Query y axios */}
+          <HealthWidget />
           <div className="flex flex-wrap gap-3 pt-2">
             <a
               className="inline-flex items-center gap-2 rounded-full border border-gray-300 dark:border-neutral-700 bg-gray-900 text-white dark:bg-white dark:text-black px-4 py-2 text-sm font-medium hover:opacity-90 transition"
