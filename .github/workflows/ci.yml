@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+      - 'feature/**'
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Show tool versions
+        run: |
+          node -v
+          npm -v
+
+      - name: Validate repository structure
+        shell: bash
+        run: |
+          set -e
+          echo "Validating required files and folders..."
+          test -f README.md || (echo "README.md missing" && exit 1)
+          test -d frontend || (echo "frontend/ folder missing" && exit 1)
+          test -d backend || (echo "backend/ folder missing" && exit 1)
+          echo "Repository structure OK"
+
+      - name: Placeholder lint/test
+        run: |
+          echo "No project code yet; skipping lint/test."
+          echo "CI is wired up and passing."
+
+      - name: Install frontend dependencies
+        working-directory: frontend
+        run: npm ci
+
+      - name: Build frontend
+        working-directory: frontend
+        run: npm run build
